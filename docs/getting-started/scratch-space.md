@@ -49,7 +49,7 @@ For any job with significant I/O, follow this four-step pattern inside your batc
 #SBATCH --output=sim_output.txt
 
 # 1. Copy data into Scratch
-WORKDIR=~/scratch/sim_$$
+WORKDIR=~/scratch/sim_${SLURM_JOB_ID}
 mkdir -p $WORKDIR
 cp ~/projects/sim/input.dat $WORKDIR/
 cp ~/projects/sim/run_sim     $WORKDIR/
@@ -69,7 +69,7 @@ cd ~
 rm -rf $WORKDIR
 ```
 
-The `$$` variable expands to the job's process ID, creating a unique working directory per job to avoid conflicts when running multiple jobs simultaneously.
+`$SLURM_JOB_ID` is the unique SLURM job ID, creating a unique working directory per job to avoid conflicts when running multiple jobs simultaneously.
 
 ## Scratch Storage Management Policy
 

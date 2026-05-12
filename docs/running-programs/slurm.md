@@ -179,7 +179,6 @@ module load gnu12
 #SBATCH --time=3:30:00
 
 module purge
-module unload gnu12
 module load cuda/12.4
 module load miniconda
 

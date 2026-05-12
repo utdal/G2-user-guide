@@ -39,7 +39,6 @@ For GPU-accelerated Python (PyTorch, TensorFlow):
 #SBATCH --time=12:00:00
 
 module purge
-module unload gnu12
 module load cuda/12.4
 module load miniconda
 conda activate /groups/mygroup/envs/pytorch

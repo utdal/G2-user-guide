@@ -121,7 +121,6 @@ For GPU jobs, also load CUDA before Miniconda:
 
 ```bash
 module purge
-module unload gnu12
 module load cuda/12.4
 module load miniconda
 

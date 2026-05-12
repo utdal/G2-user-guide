@@ -151,7 +151,6 @@ result = torch.matmul(x, y)
 #SBATCH --time=8:00:00
 
 module purge
-module unload gnu12
 module load cuda/12.4
 module load miniconda
 conda activate /groups/mygroup/envs/pytorch

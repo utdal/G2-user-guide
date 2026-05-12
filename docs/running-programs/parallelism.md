@@ -275,7 +275,7 @@ module load cuda/12.4
 Run MPI across GPU nodes, with CUDA acceleration on each node.
 
 ```bash
-module unload gnu14
+module unload gnu12
 module load cuda/12.4
 
 nvcc -Xcompiler -ccbin=mpicxx hybrid_mpi_cuda.cpp -o hybrid_mpi_cuda
@@ -288,7 +288,7 @@ mpirun -n 4 ./hybrid_mpi_cuda
 Full hybrid: MPI across nodes, OpenMP within nodes, CUDA on GPUs.
 
 ```bash
-module unload gnu14
+module unload gnu12
 module load cuda/12.4
 
 nvcc -Xcompiler "-fopenmp -ccbin=mpicxx" \
@@ -373,7 +373,7 @@ See [Python Optimization](../advanced/python-optimization.md) for more.
 
 - [High-throughput computing with Launcher →](launcher.md)
 - [Python acceleration →](../advanced/python-optimization.md)
-- [GPU examples and monitoring →](../advanced/python-optimization.md)
+- [GPU job monitoring →](advanced-slurm.md)
 
 ## Need Help?
 

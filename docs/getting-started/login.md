@@ -123,6 +123,9 @@ GUI clients such as **FileZilla** also work with G2 over SFTP (`ganymede2.utdall
 
 See [Storage and Data Transfer](storage.md) for full details.
 
+!!! tip "Skip typing your password every time"
+    Set up [SSH key authentication](ssh-keys.md) to log in without a password and enable automation workflows.
+
 ## Login Node Best Practices
 
 !!! warning "Do not run computations on login nodes"
@@ -163,14 +166,13 @@ tmux attach -t mysession
 | Basic login | `ssh netID@ganymede2.utdallas.edu` |
 | Login with X11 forwarding | `ssh -X netID@ganymede2.utdallas.edu` |
 | Keep connection alive | `ssh -o ServerAliveInterval=60 netID@ganymede2.utdallas.edu` |
-| Check disk quotas | `mfsgetquota -H ~` |
-| View your jobs | `squeue --me` |
 
 ## Next Steps
 
-1. [Explore storage options →](storage.md)
-2. [Learn basic Linux commands →](../working-on-g2/linux-commands.md)
-3. [Submit your first job →](../running-programs/slurm.md)
+1. [Set up SSH key authentication →](ssh-keys.md)
+2. [Explore storage options →](storage.md)
+3. [Learn basic Linux commands →](../working-on-g2/linux-commands.md)
+4. [Submit your first job →](../running-programs/slurm.md)
 
 ## Need Help?
 
