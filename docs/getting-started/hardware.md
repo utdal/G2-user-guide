@@ -80,25 +80,14 @@ G2 compute nodes have **2 sockets**, each populated with one AMD EPYC CPU. Each 
 
 GPU nodes add one or more NVIDIA GPUs. Each GPU has thousands of small CUDA cores and its own dedicated memory (VRAM), distinct from the node's main RAM.
 
-## SLURM Partitions Summary
+## SLURM Partitions
 
 ![G2 cluster partitions — how the 126 nodes are divided across cpu-preempt, gpu-preempt, and individual condo partitions.](../images/slurm-partitions.png)
 
-G2 partitions map to condos and shared pools:
+The cluster's hardware is exposed to jobs through SLURM **partitions**. Every user can submit to the shared `cpu-preempt` and `gpu-preempt` partitions (all CPU/GPU nodes, preemptible), plus any condo partition they belong to.
 
-| Partition | Access | Time Limit | Resources |
-|-----------|--------|------------|-----------|
-| `cpu-preempt` | All users | 7 days | All CPU compute nodes |
-| `gpu-preempt` | All users | 7 days | All GPU compute nodes |
-| `g1mig` | g1mig condo members | 2 days | 8 CPU nodes (512 cores, 6.1 TB RAM) |
-| `coskunuzer` | Coskunuzer group | 7 days | 2 CPU nodes + 1 H100 GPU node |
-| `rotea` | Rotea group | 7 days | 2 CPU nodes + 1 H100 GPU node |
-| *other condos* | Respective group members | Varies | Varies |
+For the partition table, time limits, and preemption rules, see the [SLURM Job Scheduler](../running-programs/slurm.md) page. To inspect current partitions and their exact resources:
 
-!!! note
-    Jobs submitted to `cpu-preempt` or `gpu-preempt` may be **preempted** (killed and optionally requeued) when a condo owner submits jobs to their own partition. Use `--requeue` in your job script to automatically restart preempted jobs.
-
-For the current list of partitions and their exact resources, run:
 ```bash
 sinfo
 scontrol show partition <partition-name>
@@ -120,16 +109,15 @@ The `gpu-preempt` partition provides access to a wide variety of GPU hardware co
 
 ## Storage Systems
 
-| System | Path | Quota | Backup | Use For |
-|--------|------|-------|--------|---------|
-| Home (IO2) | `~` | 50 GB | Daily | Config files, scripts, small data |
-| Group (IO2) | `/groups/<pi-name>` | 1–20 TB | Daily | Shared group software and data |
-| Scratch | `~/scratch` | 30 TB | Never | High-speed I/O during batch jobs |
-
-Scratch is up to **10× faster** for large I/O than home or group directories.
+G2 provides Home, Group, and high-speed Scratch storage tiers. For paths, quotas, backup policy, and data-transfer methods, see [Storage and Data Transfer](storage.md).
 
 ## Next Steps
 
 - [See SLURM partitions and job submission →](../running-programs/slurm.md)
 - [Storage and data management →](storage.md)
 - [Request an account →](account-request.md)
+
+## Need Help?
+
+- **Email**: [circ-assist@utdallas.edu](mailto:circ-assist@utdallas.edu)
+- **HPC Services**: [hpc.utdallas.edu/services](https://hpc.utdallas.edu/services)

@@ -330,44 +330,11 @@ Is your problem parallel?
 
 ## Python Parallelism
 
-Python has specific challenges:
-
-- Python's Global Interpreter Lock (GIL) prevents true thread parallelism for CPU-bound work
-- C extensions (like NumPy) release the GIL and can use OpenMP internally
-- For MPI in Python, use the `mpi4py` library
-- For GPU acceleration, use PyTorch, CuPy, or Numba
-
-```python
-# Shared memory via multiprocessing
-from multiprocessing import Pool
-
-def process(x):
-    return x ** 2
-
-with Pool(processes=8) as pool:
-    results = pool.map(process, range(1000))
-```
-
-```python
-# MPI in Python
-from mpi4py import MPI
-
-comm = MPI.COMM_WORLD
-rank = comm.Get_rank()
-size = comm.Get_size()
-print(f"Hello from rank {rank} of {size}")
-```
-
-See [Python Optimization](../advanced/python-optimization.md) for more.
+Python needs special handling: its Global Interpreter Lock (GIL) prevents true thread parallelism for CPU-bound work. The workarounds map onto the models above — `multiprocessing` and `mpi4py` for CPU parallelism, and PyTorch/CuPy/Numba for GPU. See [Accelerating Python](../advanced/python-optimization.md) for code examples and guidance.
 
 ## Compilers Available on G2
 
-| Compiler | Module | Languages |
-|----------|--------|-----------|
-| GCC 5–14 | `gnu5` ... `gnu14` | C, C++, Fortran |
-| Intel oneAPI 2025 | `intel/2025.0` | C, C++, Fortran |
-| NVIDIA CUDA | `cuda/11.7`, `cuda/12.4`, `cuda/12.6` | CUDA C/C++ |
-| MPI wrappers | `openmpi4`, `mpich` | Wraps above compilers |
+For the full list of compilers, MPI implementations, and their module names, see [Available Software and Compilers](../working-on-g2/software.md).
 
 ## Next Steps
 

@@ -176,7 +176,7 @@ Yes, through Open OnDemand. Log in, click **Interactive Apps**, and launch a Jup
 
 ---
 
-## Still have questions?
+## Need Help?
 
 - **Email**: [circ-assist@utdallas.edu](mailto:circ-assist@utdallas.edu)
 - **HPC Services**: [hpc.utdallas.edu/services](https://hpc.utdallas.edu/services)

@@ -124,62 +124,9 @@ module load cuda/12.4
 nvcc -o mykernel mykernel.cu
 ```
 
-## Software Available on G2
+## What Software Is Available?
 
-### Compilers and Toolkits
-
-```bash
-module load gnu12         # GCC 12 (default)
-module load gnu14         # GCC 14
-module load intel/2025.0  # Intel compilers
-module load cuda/11.7     # NVIDIA CUDA 11.7
-module load cuda/12.4     # NVIDIA CUDA 12.4
-module load cuda/12.6     # NVIDIA CUDA 12.6
-```
-
-### MPI Implementations
-
-```bash
-module load openmpi4/4.1.6    # OpenMPI 4 (default)
-module load mpich             # MPICH
-```
-
-### Programming Languages and Environments
-
-```bash
-module load python        # Python
-module load R             # R statistical computing
-module load julia         # Julia
-module load miniconda     # Conda environment manager
-```
-
-### Scientific and Commercial Software
-
-```bash
-module load matlab        # MATLAB
-module load gaussian/16   # Gaussian 16
-module load ansys2025R1/fluent  # Ansys Fluent
-module load gromacs       # GROMACS (molecular dynamics)
-module load amber         # AMBER (molecular dynamics)
-module load namd          # NAMD (molecular dynamics)
-module load vasp          # VASP (materials modeling)
-module load orca          # ORCA (quantum chemistry)
-module load qchem         # Q-Chem (quantum chemistry)
-module load stata         # Stata (statistics)
-module load ollama        # Ollama (local LLM inference)
-```
-
-### Performance and Debugging Tools
-
-```bash
-module load amduprof      # AMD uProf profiler
-module load valgrind      # Valgrind memory checker
-module load launcher      # TACC Launcher (high-throughput)
-module load apptainer     # Container runtime
-module load spack         # Spack package manager
-```
-
-Use `module avail` for the full, current list.
+G2 offers compilers, MPI implementations, programming languages, and scientific and commercial applications through the module system. For the full catalog with versions, see [Available Software and Compilers](software.md), or run `module avail` for the live list.
 
 ## Module Hierarchy
 

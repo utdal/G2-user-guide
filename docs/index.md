@@ -6,30 +6,13 @@ Welcome to Ganymede 2 (G2), a High Performance Computing (HPC) cluster at UT Dal
 
 ## What is Ganymede 2?
 
-Ganymede 2 is an HPC cluster consisting of **126 nodes** organized into **26 condos**, owned and operated by individual research groups. Users access shared nodes through the `cpu-preempt` and `gpu-preempt` partitions in addition to any condo they belong to.
+Ganymede 2 is an HPC cluster consisting of **126 nodes** organized into **26 condos**, owned and operated by individual research groups. In total it provides roughly **8,000 cores**, **116 GPUs**, and **58 TB of RAM**, interconnected via **HDR100 InfiniBand** for fast MPI communication.
 
-### Cluster Summary
-
-| Resource | Quantity |
-|----------|----------|
-| Condos | 26 |
-| Total nodes | 126 |
-| Total cores | ~8,000 |
-| Total RAM | 58 TB |
-| Total GPUs | 116 |
-
-### Node Types
-
-- **CPU compute nodes**: Multi-core AMD EPYC processors, up to 768 GB RAM each
-- **GPU compute nodes**: AMD EPYC CPUs paired with NVIDIA H100 GPUs
-- **Login nodes**: Your entry point to the cluster (`g2-l-01` and `g2-l-02`)
-- **Head node**: Where the SLURM job scheduler runs
-
-All compute nodes are interconnected via **HDR100 InfiniBand** for fast MPI communication.
+Users access shared nodes through the `cpu-preempt` and `gpu-preempt` partitions, in addition to any condo they belong to.
 
 ![Ganymede 2 Cluster Diagram](images/Ganymede2.png)
 
-For full hardware specifications, see the [Hardware Overview](getting-started/hardware.md).
+For the full hardware breakdown — node types, per-condo specs, and GPU inventory — see the [Hardware Overview](getting-started/hardware.md).
 
 ---
 
@@ -80,6 +63,7 @@ New to G2? Start here to set up your account, log in, and understand the storage
 
 - [How to Request an Account](getting-started/account-request.md)
 - [How to Log In to the System](getting-started/login.md)
+- [SSH Key Authentication](getting-started/ssh-keys.md)
 - [Storage and Data Transfer](getting-started/storage.md)
 - [Scratch Space](getting-started/scratch-space.md)
 - [Hardware Overview](getting-started/hardware.md)

@@ -187,81 +187,7 @@ conda activate /groups/mygroup/envs/pytorch
 python train_model.py
 ```
 
-### Job with Scratch I/O
-
-```bash
-#!/bin/bash
-#SBATCH --job-name=sim_model_a
-#SBATCH --output=sim_model_a_%j.out
-#SBATCH --partition=rotea
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=6
-#SBATCH --gres=gpu:1
-#SBATCH --mem=30G
-#SBATCH --time=3:30:00
-
-SRC=/groups/mygroup/simulation/
-
-# Copy data into Scratch
-cd ~/scratch
-mkdir batch_job_a
-cd batch_job_a
-cp $SRC/sim .
-cp $SRC/properties_db .
-cp $SRC/model_a .
-
-# Load environment and run
-module purge
-module load miniconda
-conda activate /groups/mygroup/envs/sim
-
-./sim model_a results_a
-
-# Copy results back
-cp model_a_updated $SRC
-cp results_a $SRC
-
-# Clean up Scratch
-cd ..
-rm -rf batch_job_a
-```
-
-### Python Job
-
-```bash
-#!/bin/bash
-#SBATCH --job-name=python_analysis
-#SBATCH --output=python_%j.out
-#SBATCH --partition=cpu-preempt
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=4
-#SBATCH --mem=8G
-#SBATCH --time=2:00:00
-
-module purge
-module load miniconda
-conda activate /groups/mygroup/envs/myenv
-
-python analyze_data.py --input data.csv --output results.txt
-```
-
-### MATLAB Job
-
-```bash
-#!/bin/bash
-#SBATCH --job-name=matlab_sim
-#SBATCH --output=matlab_%j.out
-#SBATCH --partition=cpu-preempt
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=8
-#SBATCH --mem=16G
-#SBATCH --time=12:00:00
-
-module purge
-module load matlab/r2024b
-
-matlab -nodisplay -nosplash -r "run('simulation.m'); exit;"
-```
+For application-specific scripts (Python, MATLAB, GROMACS, Gaussian, ORCA, R, Ollama, and more), see [Common Scientific Programs](common-programs.md). For a job that stages data through high-speed scratch, see the worked example in [Scratch Space](../getting-started/scratch-space.md).
 
 ### Array Job
 
@@ -296,64 +222,17 @@ You can monitor job progress by watching the output file:
 tail -f crunch_out.txt
 ```
 
-## Monitoring Jobs
+## Monitoring and Managing Jobs
+
+Once submitted, track and control your jobs with:
 
 ```bash
-# View your queued and running jobs
-squeue --me
-
-# View all jobs in a partition
-squeue -p cpu-preempt
-
-# Detailed job information
-scontrol show job 8378
-
-# Job accounting (after completion)
-sacct -j 8378
-sacct -j 8378 --format=JobID,JobName,State,Start,End,Elapsed,MaxRSS
+squeue --me                  # Your queued and running jobs
+tail -f myjob_8378.out       # Watch live output
+scancel 8378                 # Cancel a job
 ```
 
-**squeue output columns**:
-
-| Column | Meaning |
-|--------|---------|
-| JOBID | Job identifier |
-| PARTITION | Partition name |
-| NAME | Job name |
-| USER | Username |
-| ST | State: R=running, PD=pending, CG=completing |
-| TIME | Elapsed time |
-| NODES | Number of nodes |
-| NODELIST(REASON) | Nodes allocated, or reason for pending |
-
-## Managing Jobs
-
-```bash
-# Cancel a job
-scancel 8378
-
-# Cancel all your jobs
-scancel -u $USER
-
-# Hold a job (prevent it from starting)
-scontrol hold 8378
-
-# Release a held job
-scontrol release 8378
-```
-
-## Checking Partition Resources
-
-```bash
-# View all partitions
-sinfo
-
-# Detailed partition information
-scontrol show partition cpu-preempt
-
-# Node details
-scontrol show node c-08-01
-```
+For the full set of monitoring and management commands — `sacct` accounting, `scontrol` details, holding/releasing jobs, checking resource efficiency, and inspecting cluster/partition state — see [Monitoring Jobs and Cluster State](advanced-slurm.md).
 
 ## Job Dependencies
 
@@ -375,42 +254,7 @@ sbatch --dependency=afterok:$job1 job2.sh
 
 ## Troubleshooting
 
-### Job Pending for a Long Time
-
-```bash
-squeue -u $USER -l
-```
-
-**Common reasons**:
-
-- `Resources`: No idle nodes available; wait in queue
-- `Priority`: Other jobs have higher priority
-- `QOSMaxCpuPerUserLimit`: Exceeded per-user CPU limit — reduce your request
-- `AssocGrpMemLimit`: Exceeded memory limit
-
-### Job Failed Immediately
-
-```bash
-cat myjob_8378.err
-```
-
-Common causes: wrong module, missing input file, incorrect path, syntax error in script.
-
-### Out of Memory
-
-Job killed with exit code 137, or "Killed" in the error file. Increase `--mem`:
-
-```bash
-#SBATCH --mem=64G
-```
-
-### Job Times Out
-
-Increase `--time` (up to the partition maximum). Check partition limits:
-
-```bash
-sinfo -o "%P %l"
-```
+For diagnosing pending jobs, failures, out-of-memory (exit code 137), timeouts, and preemption, see [Diagnosing Common Issues](advanced-slurm.md#diagnosing-common-issues).
 
 ## Best Practices
 

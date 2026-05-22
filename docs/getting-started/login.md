@@ -102,26 +102,7 @@ Access G2 through your web browser without needing SSH:
 
 ## Data Transfer
 
-Transfer files between your computer and G2 using `scp` or `rsync`:
-
-```bash
-# Upload a file to G2
-scp myfile.txt netID@ganymede2.utdallas.edu:~/work
-
-# Download a file from G2
-scp netID@ganymede2.utdallas.edu:~/work/results.txt ./
-```
-
-For large or resumable transfers, use `rsync`:
-```bash
-rsync -P myfile.txt netID@ganymede2.utdallas.edu:~/scratch/
-```
-
-The `-P` flag preserves partially downloaded files and shows progress.
-
-GUI clients such as **FileZilla** also work with G2 over SFTP (`ganymede2.utdallas.edu`, port 22).
-
-See [Storage and Data Transfer](storage.md) for full details.
+Transfer files between your computer and G2 using `scp`, `rsync`, or a GUI SFTP client such as FileZilla. See [Storage and Data Transfer](storage.md) for commands, examples, and recommended workflows.
 
 !!! tip "Skip typing your password every time"
     Set up [SSH key authentication](ssh-keys.md) to log in without a password and enable automation workflows.
