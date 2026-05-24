@@ -54,7 +54,7 @@ nav:
     - JupyterLab: gui-and-tools/jupyter.md
     - VSCode: gui-and-tools/vscode.md
   - AI & Machine Learning:
-    - GPU Computing on Juno: ai-and-ml/index.md
+    - GPU Computing on G2: ai-and-ml/index.md
     - PyTorch Training Jobs: ai-and-ml/pytorch-training.md
     - GPU Performance & Monitoring: ai-and-ml/gpu-performance.md
     - AlphaFold 3: ai-and-ml/alphafold3.md
