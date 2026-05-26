@@ -2,9 +2,6 @@
 
 Ganymede2 provides several GPU partitions suited to different workloads, from interactive prototyping to large-scale distributed AI training. This section covers how to set up a GPU environment, select the right partition, and run jobs efficiently.
 
----
----
-
 ## Setting Up a GPU Environment
 
 The recommended approach on Ganymede2 is to create a Conda environment with the GPU libraries you need.
